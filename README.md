@@ -53,6 +53,9 @@ python social_signaling/sim.py
 ```
 *(Note: Review `docs/LESSONS.md` #8 and #9 before running `will_network_es/`.)*
 
+## Conclusion
+
+This repository demonstrates that "fear" and its intricate behavioral mechanisms—such as generalization, extinction, and relapse—do not necessitate high-level cognition or consciousness. By strictly adhering to minimalist principles like homeostatic drives, prediction errors, and separated evolutionary timescales, we can computationally synthesize the profound survival strategies observed in nature. This work serves as a foundational step toward understanding how pure mathematical optimization in uncertain environments naturally gives rise to what we interpret as biological emotion and survival instinct.
 ---
 ---
 
@@ -106,3 +109,7 @@ python threat_fear_sim/sim.py
 python social_signaling/sim.py
 ```
 *(참고: `will_network_es/`를 실행하기 전에 `docs/LESSONS.md`의 8, 9번 항목을 반드시 확인하세요.)*
+
+## 결론 (Conclusion)
+
+본 프로젝트는 소거와 재발 같은 복잡한 위협 대처 메커니즘, 즉 '공포'라는 감정적 행동 양상이 발현되기 위해 고차원적인 인지나 의식이 반드시 필요하지 않음을 증명합니다. 항상성 유지 본능, 예측 오차, 그리고 진화적 시간 척도의 엄격한 분리라는 최소한의 아키텍처만으로도 자연계에서 관찰되는 정교한 생존 전략을 시뮬레이션 환경에서 성공적으로 창발시킬 수 있습니다. 이 연구는 불확실한 환경에서의 순수한 수학적 최적화 과정이, 어떻게 우리가 생물학적 감정이나 생존 본능으로 해석하는 경이로운 현상들을 자연스럽게 빚어내는지 이해하는 중요한 학술적 기반을 제공합니다.
