@@ -1,129 +1,108 @@
-# Homeostasis-based Threat/Fear Learning: Exploration of Minimal Architecture
-# 항상성 기반 위협/공포 학습: 최소 아키텍처 탐구
+# Homeostasis-based Threat/Fear Learning: An Exploration of Minimal Architecture
 
-> "If attention dominated the world with a single elegant linear algebra formula, can consciousness or will also be designed with such minimal rules?" 
-> 
-> "어텐션 메커니즘이 간결한 선형대수 공식 하나로 세상을 지배했다면, 의식이나 의지도 그런 최소한의 규칙으로 설계할 수 있을까?"라는 철학적 질문에서 출발해, **"공포 학습의 행동적 서명이 극도로 단순한 규칙에서 창발하는가?"**라는 실증적 질문으로 구체화된 연구 프로젝트입니다.
+[🇰🇷 한국어 버전은 아래에 있습니다 (Korean version below)](#항상성-기반-위협공포-학습-최소-아키텍처-탐구)
 
 ---
 
-## 📑 Table of Contents (목차)
-1. [Abstract (요약)](#1-abstract-요약)
-2. [Research Objectives (연구 목표)](#2-research-objectives-연구-목표)
-3. [Key Design Principles (핵심 설계 원칙)](#3-key-design-principles-핵심-설계-원칙)
-4. [Conceptual Architecture & Behavioral Signatures (개념적 아키텍처 및 행동 서명)](#4-conceptual-architecture--behavioral-signatures-개념적-아키텍처-및-행동-서명)
-5. [Repository Structure (저장소 구조)](#5-repository-structure-저장소-구조)
-6. [Current Status & Verification (현재 상태 및 검증 내역)](#6-current-status--verification-현재-상태-및-검증-내역)
-7. [Execution Guide (실행 방법)](#7-execution-guide-실행-방법)
+## Abstract
 
----
+This repository presents a computational neuroscience and artificial life experiment that asks a profound, minimalist question: **Can the complex, behavioral signatures of biological fear emerge from extremely simple mathematical rules?**
 
-## 1. Abstract (요약)
+Inspired by how the "Attention" mechanism revolutionized AI with a simple linear algebra formula, this project attempts to strip away high-level cognitive frameworks, explicit planning, and philosophical debates about "consciousness." Instead, it grounds the agent's behavior purely in homeostatic survival drives, prediction errors, and primitive reflexes. By doing so, it successfully demonstrates that highly nuanced behaviors—such as the rapid acquisition of fear, generalization, extinction, and unexpected relapse—do not require a "conscious mind" to manifest. They are, at their core, inevitable mathematical consequences of a system trying to maintain its internal equilibrium in an uncertain environment.
 
-**English:** This project simulates an artificial life environment to verify if complex behavioral signatures of animal fear learning can emerge from extremely simplified rules. Rather than implementing explicit planning or high-level cognitive models, the agents rely entirely on homeostatic resources, simple prediction errors, and prototype-based reflexes.
+## Analytical Insights & Key Discoveries
 
-**Korean:** 본 프로젝트는 인공 생명체 시뮬레이션을 통해 동물의 공포 학습에서 나타나는 복잡한 행동 서명(Behavioral Signatures)이 극도로 단순화된 규칙으로부터 창발(Emergence)할 수 있는지 검증합니다. 명시적인 계획이나 고차원적 인지 모델 없이, 오직 항상성(Homeostasis) 기반의 자원 관리, 단순 예측 오차, 그리고 프로토타입 기반의 반사 행동만을 사용합니다.
+Through analyzing the core architecture of this repository, several deep insights into computational behavior have been formalized:
 
----
+### 1. The "Zombie" Argument and Mechanical Adaptation
+The project wisely abandons the unanswerable question of whether the system possesses "consciousness." By focusing strictly on behavioral signatures (e.g., generalization of threats, rapid reflexes), the simulation proves that what we observe as "fear" in biological entities can be entirely replicated by mechanistic, unsupervised Hebbian updates (fast weights) paired with homeostatic feedback.
 
-## 2. Research Objectives (연구 목표)
+### 2. The Baldwin Effect and Evolutionary Stagnation
+A brilliant architectural decision in this project is the strict separation of timescales. If an agent is allowed to inherit the exact synaptic weights (memories) acquired by its ancestors, the evolutionary selection pressure shifts away from "adaptability" and toward "fast convergence," ultimately stagnating the species. By forcing every generation to start with a blank slate (`W_0=0`) and only evolving the *hyperparameters* of learning (slow weights), the system perfectly mirrors the natural boundaries between genotype and phenotype.
 
-### What this project does NOT answer (본 연구가 다루지 않는 것)
-- **"Does this system have consciousness/will?"** 
-  - We concluded that this is behaviorally unverifiable (refer to the Zombie Argument in `docs/DESIGN_JOURNEY.md`).
-  - **"이 시스템에 자의식이나 의지가 있는가?"**라는 질문은 행동적 관찰만으로는 증명이 불가능하다는 결론을 내렸습니다.
+### 3. The Architecture of Relapse
+Why do extinguished fears suddenly return? The simulation elegantly solves this by decoupling excitatory and inhibitory associations. When a threat is "extinguished," the original memory isn't erased. Instead, a new inhibitory layer suppresses it. This mechanism accurately simulates the biological reality of trauma—proving that the asymmetric retention of threat memory is a structural necessity for survival, not a flaw.
 
-### What this project attempts to answer (본 연구가 답하려는 것)
-Can the following four behavioral signatures of animal fear emerge from a minimal rule set?
-다음 4가지 동물 공포의 행동적 서명이 최소 규칙 집합에서 창발하는가?
-1. **Fast Reflex (빠른 반사)**
-2. **Generalization (일반화)**: Avoidance behavior triggered by similar, non-exact threat stimuli. (정확히 동일한 자극이 아니어도 유사한 위협 범주에 대한 회피 전이)
-3. **Extinction & Relapse (소거 및 재발)**: The disappearance of fear response and its unexpected return. (공포 반응의 소멸과 갑작스러운 재발)
-4. **Asymmetric Retention of Threat Memory (위협 기억의 비대칭적 보존)**
+### 4. Uncertainty as a Catalyst for True Discrimination
+The simulations in `threat_fear_sim` and `social_signaling` reveal that if a threat is 100% predictable, the optimal evolutionary strategy is blind avoidance. True cognitive discrimination (distinguishing between a predator and a harmless entity) only emerges when the environment introduces uncertainty and competing incentives (e.g., risking danger for food).
 
----
+## Conceptual Visualizations
 
-## 3. Key Design Principles (핵심 설계 원칙)
-
-These principles were refined through multiple iterations of critical review. (여러 번의 비판적 리뷰를 거쳐 확립된 원칙입니다.)
-
-1. **Separation of Timescales (온라인 학습과 진화의 분리)**
-   - Local Hebbian updates manage within-lifetime adaptation (fast weights), while only scalar hyperparameters evolve across generations (slow weights).
-   - 생애 내의 적응은 국소적 Hebbian 갱신(빠른 가중치)이 담당하고, 세대 간 진화는 스칼라 하이퍼파라미터(느린 가중치)만이 변이와 도태를 거칩니다.
-
-2. **Prevention of the Baldwin Effect (볼드윈 효과 방지)**
-   - Traits acquired via lifetime learning (e.g., weights, prototype positions) are never inherited. All agents start from a blank state. Inheriting acquired traits shifts selection pressure toward "fast convergence" rather than true adaptation, stagnating evolution.
-   - 생애 동안 학습으로 변하는 값들은 유전자형에 포함하지 않습니다. 이를 어기면 선택압이 실제 생존 능력이 아닌 '빠른 수렴 속도'에 맞춰져 진화가 정체됩니다.
-
-3. **Excitatory vs. Inhibitory Separation (위협 기억의 흥분성/억제성 분리)**
-   - Threat memory is implemented via eligibility traces with separated excitatory and inhibitory associations. This allows extinction to occur without destroying the original memory, enabling relapse phenomena.
-   - 억제성 연관을 따로 두어야, 공포가 소거된 후에도 무관한 스트레스 등에 의해 다시 공포가 '재발'하는 실제 동물의 특성을 재현할 수 있습니다.
-
-4. **Necessity of Uncertainty & Counter-Incentives (불확실성과 반대 유인의 필수성)**
-   - True discrimination emerges only when threats are probabilistic and accompanied by rewards (e.g., food). If threats are deterministic, simple unconditional avoidance becomes the optimal strategy, rendering generalization/extinction experiments meaningless.
-   - 위협이 100% 확률로 피해를 준다면 무조건적인 회피가 최적의 전략이 되어버립니다. 진정한 식별 능력은 불확실성과 보상(반대 유인)이 공존할 때 창발합니다.
-
-5. **Direct Interoceptive Grounding (내수용감각의 직접 표상 연결)**
-   - Homeostatic states (e.g., hunger) must be directly fed into the hidden representation to allow the agent to associate internal needs with specific external stimuli.
-   - '배고픔'과 같은 항상성 상태가 은닉 상태 계산에 직접 입력되지 않으면, 내부 상태와 외부 자극을 결합하여 학습할 원천적인 방법이 없습니다.
-
----
-
-## 4. Conceptual Architecture & Behavioral Signatures (개념적 아키텍처 및 행동 서명)
-
-Below are conceptual representations generated to validate our hypotheses regarding extinction/relapse and the separation of evolutionary timescales. 
-(아래는 소거/재발 현상 및 진화적 시간 척도의 분리에 대한 가설을 시각화한 개념도입니다.)
-
-### Extinction and Relapse (공포의 소거와 재발)
+### Extinction and Relapse
 ![Extinction and Relapse](docs/assets/extinction_relapse.png)
 *Figure 1: Behavioral signature of threat memory. The fear response is acquired, extinguished, but can spontaneously recover (relapse) due to the underlying separation of excitatory and inhibitory weights.*
 
-### Evolution vs. Learning (진화와 생애 온라인 학습의 분리)
+### Evolution vs. Learning
 ![Evolution vs Learning](docs/assets/evolution_learning.png)
 *Figure 2: Separation of timescales. Genotypic parameters (Slow weights) evolve over generations, providing the framework within which phenotypic adaptation (Fast weights) occurs rapidly within a single lifetime.*
 
----
+## Repository Structure & Status
 
-## 5. Repository Structure (저장소 구조)
+- **`threat_fear_sim/` (Verified)**: The core simulation of a single agent. Successfully reproduces extinction and relapse, though high variance across seeds requires multi-seed testing.
+- **`social_signaling/` (Verified)**: A multi-agent environment simulating alarm signals for predators vs. poisonous plants. It highlighted critical statistical illusions regarding genetic correlation and discrimination.
+- **`will_network_es/` (Unresolved)**: An experimental neural network attempting to learn a "Will Gate" via Evolution Strategies (ES). Currently facing an issue where the deterministic policy collapses into a single action.
+- **`docs/`**: Contains the deep-dive design journey and methodological lessons learned during the project.
 
-```text
-📦 homeostasis-fear-learning
- ┣ 📂 threat_fear_sim/    # Single-agent evolution & core threat learning verification (가장 정제된 단일 개체 시뮬레이터)
- ┣ 📂 social_signaling/   # Multi-agent environment for alarm signals (다개체 환경 포식자/독초 구별 시뮬레이터)
- ┣ 📂 will_network_es/    # Neural network experiments for a "Will Gate" using ES (진화 전략 기반 의지 네트워크 초안)
- ┗ 📂 docs/               
-   ┣ 📜 DESIGN_JOURNEY.md # Full logical progression, abandoned ideas, and rationale (설계 원칙 및 논증 과정)
-   ┣ 📜 LESSONS.md        # Traps encountered and reusable methodology checklists (시행착오 및 교훈 체크리스트)
-   ┗ 📂 assets/           # Generated graphs and visual resources (시각 자료)
-```
+## Execution
 
----
+For optimal performance, run these simulations in a GPU-accelerated environment (e.g., Google Colab with T4).
 
-## 6. Current Status & Verification (현재 상태 및 검증 내역)
-
-| Experiment (실험) | Status (상태) | Notes (비고) |
-|:---:|---|---|
-| **`threat_fear_sim`** | **Verified (확인됨)** | Extinction and relapse successfully reproduced in small-scale runs. High variance across seeds requires multi-seed repetition.<br>*(소규모 실행에서 소거/재발 재현 확인. 시드 간 변동성이 커 다중 시드 반복 테스트 필요)* |
-| **`social_signaling`** | **Verified (확인됨)** | Signal transmission is robust. Genetic correlation with discrimination ability was mostly identified as statistical illusion (See `docs/LESSONS.md` #6, #7).<br>*(신호 전달 효과는 견고하나, 구별 능력과의 유전자 상관은 통계적 착시로 판명)* |
-| **`will_network_es`** | **Unresolved (미해결 버그)** | Deterministic `argmax` policy collapses into a single action regardless of state. Temperature annealing (`v11`) pending verification.<br>*(상태와 무관하게 하나의 행동으로 붕괴하는 현상 발생. 온도 어닐링 기법 미검증 상태)* |
-
----
-
-## 7. Execution Guide (실행 방법)
-
-It is recommended to run these simulations in environments with GPU acceleration (e.g., Google Colab with T4 or higher).
-(Colab 등 GPU가 지원되는 환경에서 실행하는 것을 권장합니다.)
-
-**For Threat/Fear Simulation:**
 ```bash
 python threat_fear_sim/sim.py
-```
-
-**For Social Signaling Simulation:**
-```bash
 python social_signaling/sim.py
 ```
+*(Note: Review `docs/LESSONS.md` #8 and #9 before running `will_network_es/`.)*
 
-> [!WARNING]
-> Before running `will_network_es`, please read `#8` and `#9` in `docs/LESSONS.md`.
-> (`will_network_es`를 실행하기 전에 반드시 `docs/LESSONS.md`의 8, 9번 항목을 확인하십시오.)
+---
+---
+
+# 항상성 기반 위협/공포 학습: 최소 아키텍처 탐구
+
+## 요약 (Abstract)
+
+이 저장소는 **"생물학적 공포에서 나타나는 복잡한 행동적 서명들이 극도로 단순한 수학적 규칙에서 창발할 수 있는가?"**라는 본질적이고 미니멀리즘적인 질문을 던지는 계산 신경과학 및 인공 생명체 실험입니다.
+
+'어텐션(Attention)' 메커니즘이 단순한 선형대수 공식으로 AI를 혁신했듯, 이 프로젝트는 고차원적인 인지 모델이나 명시적인 계획, '의식'에 대한 철학적 논쟁을 배제합니다. 대신 에이전트의 행동을 오직 항상성(Homeostasis) 유지 본능, 예측 오차, 원초적 반사에만 기반을 두도록 설계했습니다. 그 결과, 공포의 빠른 습득, 일반화, 소거 및 갑작스러운 재발과 같은 매우 섬세한 생명체의 행동들이 '의식하는 자아' 없이도 발현될 수 있음을 성공적으로 보여줍니다. 이는 불확실한 환경에서 내부 평형을 유지하려는 시스템의 필연적인 수학적 결과물임을 증명합니다.
+
+## 분석적 통찰 및 주요 발견 (Analytical Insights)
+
+이 저장소의 핵심 아키텍처를 분석한 결과, 계산적 행동 방식에 대한 몇 가지 깊이 있는 통찰을 얻을 수 있었습니다.
+
+### 1. "좀비" 논증과 기계적 적응
+이 프로젝트는 시스템이 "의식"을 가졌는가 하는 답할 수 없는 질문을 현명하게 포기합니다. 대신 오직 행동적 징후(예: 위협의 일반화, 빠른 반사 행동)에만 엄격하게 초점을 맞춤으로써, 생명체에서 '공포'라고 관찰되는 현상이 항상성 피드백과 기계적이고 비지도적인 Hebbian 업데이트(빠른 가중치)만으로 완벽하게 복제될 수 있음을 증명합니다.
+
+### 2. 볼드윈 효과와 진화적 정체
+이 프로젝트의 가장 탁월한 구조적 결정은 시간 척도(Timescales)를 엄격하게 분리한 것입니다. 만약 에이전트가 조상이 살아가며 획득한 시냅스 가중치(기억)를 그대로 물려받게 둔다면, 진화의 선택압은 '환경에 적응하는 능력'이 아니라 '얼마나 빨리 수렴하는가'로 변질되어 결국 종의 진화가 정체됩니다. 모든 세대가 백지상태(`W_0=0`)에서 시작하도록 강제하고, 오직 학습의 *하이퍼파라미터*(느린 가중치)만을 진화시킴으로써 유전자형과 표현형 사이의 자연스러운 경계를 완벽하게 모사했습니다.
+
+### 3. '재발'의 아키텍처
+극복(소거)된 공포는 왜 갑자기 다시 나타날까요? 시뮬레이션은 흥분성 연관과 억제성 연관을 분리함으로써 이를 우아하게 해결합니다. 위협이 "소거"될 때, 원래의 공포 기억이 지워지는 것이 아니라 새로운 억제 계층이 이를 덮어누릅니다. 이는 트라우마의 생물학적 현실을 정확히 시뮬레이션한 것으로, 위협 기억이 비대칭적으로 끈질기게 보존되는 현상이 시스템의 결함이 아니라 생존을 위한 구조적 필수성임을 증명합니다.
+
+### 4. 진정한 '식별'을 이끌어내는 촉매, 불확실성
+`threat_fear_sim`과 `social_signaling` 실험은 위협이 100% 예측 가능하다면 진화적으로 가장 완벽한 전략은 맹목적인 '무조건 회피'임을 보여줍니다. 포식자와 무해한 존재를 구분하는 진정한 인지적 식별 능력은, 환경에 불확실성이 존재하고 서로 상충하는 유인(예: 위험을 무릅쓰고 먹이를 구해야 하는 상황)이 주어졌을 때 비로소 창발합니다.
+
+## 개념적 시각화 (Conceptual Visualizations)
+
+### 공포의 소거와 재발 (Extinction and Relapse)
+![Extinction and Relapse](docs/assets/extinction_relapse.png)
+*그림 1: 위협 기억의 행동적 징후. 공포 반응은 습득되고 소거되지만, 흥분성과 억제성 가중치가 분리된 기저 구조로 인해 갑작스럽게 회복(재발)할 수 있습니다.*
+
+### 진화 vs. 생애 학습 (Evolution vs. Learning)
+![Evolution vs Learning](docs/assets/evolution_learning.png)
+*그림 2: 시간 척도의 분리. 유전적 파라미터(느린 가중치)는 세대를 거치며 진화하여 프레임워크를 제공하고, 그 안에서 표현형의 적응(빠른 가중치)이 단일 생애 동안 빠르게 일어납니다.*
+
+## 저장소 구조 및 현재 상태
+
+- **`threat_fear_sim/` (검증 완료)**: 단일 개체의 핵심 시뮬레이션입니다. 공포의 소거와 재발을 성공적으로 재현했으며, 시드(Seed)에 따른 변동성이 커 다중 시드 테스트가 필요합니다.
+- **`social_signaling/` (검증 완료)**: 포식자와 독초에 대한 경보 신호를 시뮬레이션하는 다개체 환경입니다. 유전적 상관관계와 식별 능력 사이의 치명적인 통계적 착시를 발견하는 성과가 있었습니다.
+- **`will_network_es/` (미해결 버그)**: 진화 전략(ES)을 통해 "의지 게이트(Will Gate)"를 학습하려는 실험적 신경망입니다. 현재 상태와 무관하게 결정론적 정책이 단일 행동으로 붕괴하는 문제가 발생하고 있습니다.
+- **`docs/`**: 프로젝트를 진행하며 깊이 고민했던 설계의 여정과 방법론적 교훈이 담겨 있습니다.
+
+## 실행 방법
+
+원활한 성능을 위해 GPU 가속 환경(예: Google Colab T4 이상)에서 시뮬레이션을 실행하는 것을 권장합니다.
+
+```bash
+python threat_fear_sim/sim.py
+python social_signaling/sim.py
+```
+*(참고: `will_network_es/`를 실행하기 전에 `docs/LESSONS.md`의 8, 9번 항목을 반드시 확인하세요.)*
